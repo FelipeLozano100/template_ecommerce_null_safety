@@ -48,10 +48,8 @@ class QuickSendAmountPage extends StatelessWidget {
             IconButton(
               icon: Image.asset('assets/icons/cut_qr.png'),
               onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                      builder: (_) =>
-                          ReceivePaymentPage(user)));
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (_) => ReceivePaymentPage(user)));
               },
             )
           ],
@@ -92,7 +90,7 @@ class QuickSendAmountPage extends StatelessWidget {
                                         CircleAvatar(
                                           maxRadius: 24,
                                           backgroundImage: NetworkImage(
-                                              user.picture.thumbnail),
+                                              user.picture!.thumbnail!),
                                         ),
                                         SizedBox(width: 16.0),
                                         Column(
@@ -100,15 +98,15 @@ class QuickSendAmountPage extends StatelessWidget {
                                               CrossAxisAlignment.start,
                                           children: <Widget>[
                                             Text(
-                                              user.name.first +
+                                              user.name!.first! +
                                                   ' ' +
-                                                  user.name.last,
+                                                  user.name!.last!,
                                               style: TextStyle(
                                                   color: Colors.white54,
                                                   fontSize: 16,
                                                   fontWeight: FontWeight.bold),
                                             ),
-                                            Text(user.phone,
+                                            Text(user.phone!,
                                                 style: TextStyle(
                                                     fontSize: 12,
                                                     color: Colors.white30)),

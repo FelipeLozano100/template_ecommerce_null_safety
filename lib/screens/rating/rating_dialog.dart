@@ -91,7 +91,7 @@ class RatingDialog extends StatelessWidget {
                   color: Color(0xffFF8993),
                   size: 20,
                 ),
-                half: null,
+                half: Container(),
               ),
             ),
             Container(

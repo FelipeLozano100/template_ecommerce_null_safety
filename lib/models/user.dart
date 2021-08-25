@@ -1,30 +1,30 @@
 class User {
-  String gender;
-  Name name;
-  Location location;
-  String email;
-  Login login;
-  Dob dob;
-  Registered registered;
-  String phone;
-  String cell;
-  Id id;
-  Picture picture;
-  String nat;
+  String? gender;
+  Name? name;
+  Location? location;
+  String? email;
+  Login? login;
+  Dob? dob;
+  Registered? registered;
+  String? phone;
+  String? cell;
+  Id? id;
+  Picture? picture;
+  String? nat;
 
   User(
       {this.gender,
-        this.name,
-        this.location,
-        this.email,
-        this.login,
-        this.dob,
-        this.registered,
-        this.phone,
-        this.cell,
-        this.id,
-        this.picture,
-        this.nat});
+      this.name,
+      this.location,
+      this.email,
+      this.login,
+      this.dob,
+      this.registered,
+      this.phone,
+      this.cell,
+      this.id,
+      this.picture,
+      this.nat});
 
   User.fromJson(Map<String, dynamic> json) {
     gender = json['gender'];
@@ -42,7 +42,7 @@ class User {
     cell = json['cell'];
     id = json['id'] != null ? new Id.fromJson(json['id']) : null;
     picture =
-    json['picture'] != null ? new Picture.fromJson(json['picture']) : null;
+        json['picture'] != null ? new Picture.fromJson(json['picture']) : null;
     nat = json['nat'];
   }
 
@@ -50,28 +50,28 @@ class User {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['gender'] = this.gender;
     if (this.name != null) {
-      data['name'] = this.name.toJson();
+      data['name'] = this.name!.toJson();
     }
     if (this.location != null) {
-      data['location'] = this.location.toJson();
+      data['location'] = this.location!.toJson();
     }
     data['email'] = this.email;
     if (this.login != null) {
-      data['login'] = this.login.toJson();
+      data['login'] = this.login!.toJson();
     }
     if (this.dob != null) {
-      data['dob'] = this.dob.toJson();
+      data['dob'] = this.dob!.toJson();
     }
     if (this.registered != null) {
-      data['registered'] = this.registered.toJson();
+      data['registered'] = this.registered!.toJson();
     }
     data['phone'] = this.phone;
     data['cell'] = this.cell;
     if (this.id != null) {
-      data['id'] = this.id.toJson();
+      data['id'] = this.id!.toJson();
     }
     if (this.picture != null) {
-      data['picture'] = this.picture.toJson();
+      data['picture'] = this.picture!.toJson();
     }
     data['nat'] = this.nat;
     return data;
@@ -79,9 +79,9 @@ class User {
 }
 
 class Name {
-  String title;
-  String first;
-  String last;
+  String? title;
+  String? first;
+  String? last;
 
   Name({this.title, this.first, this.last});
 
@@ -101,20 +101,20 @@ class Name {
 }
 
 class Location {
-  String street;
-  String city;
-  String state;
-  String postcode;
-  Coordinates coordinates;
-  Timezone timezone;
+  String? street;
+  String? city;
+  String? state;
+  String? postcode;
+  Coordinates? coordinates;
+  Timezone? timezone;
 
   Location(
       {this.street,
-        this.city,
-        this.state,
-        this.postcode,
-        this.coordinates,
-        this.timezone});
+      this.city,
+      this.state,
+      this.postcode,
+      this.coordinates,
+      this.timezone});
 
   Location.fromJson(Map<String, dynamic> json) {
     street = json['street'];
@@ -136,18 +136,18 @@ class Location {
     data['state'] = this.state;
     data['postcode'] = this.postcode;
     if (this.coordinates != null) {
-      data['coordinates'] = this.coordinates.toJson();
+      data['coordinates'] = this.coordinates!.toJson();
     }
     if (this.timezone != null) {
-      data['timezone'] = this.timezone.toJson();
+      data['timezone'] = this.timezone!.toJson();
     }
     return data;
   }
 }
 
 class Coordinates {
-  String latitude;
-  String longitude;
+  String? latitude;
+  String? longitude;
 
   Coordinates({this.latitude, this.longitude});
 
@@ -165,8 +165,8 @@ class Coordinates {
 }
 
 class Timezone {
-  String offset;
-  String description;
+  String? offset;
+  String? description;
 
   Timezone({this.offset, this.description});
 
@@ -184,22 +184,22 @@ class Timezone {
 }
 
 class Login {
-  String uuid;
-  String username;
-  String password;
-  String salt;
-  String md5;
-  String sha1;
-  String sha256;
+  String? uuid;
+  String? username;
+  String? password;
+  String? salt;
+  String? md5;
+  String? sha1;
+  String? sha256;
 
   Login(
       {this.uuid,
-        this.username,
-        this.password,
-        this.salt,
-        this.md5,
-        this.sha1,
-        this.sha256});
+      this.username,
+      this.password,
+      this.salt,
+      this.md5,
+      this.sha1,
+      this.sha256});
 
   Login.fromJson(Map<String, dynamic> json) {
     uuid = json['uuid'];
@@ -225,8 +225,8 @@ class Login {
 }
 
 class Dob {
-  String date;
-  int age;
+  String? date;
+  int? age;
 
   Dob({this.date, this.age});
 
@@ -244,8 +244,8 @@ class Dob {
 }
 
 class Registered {
-  String date;
-  int age;
+  String? date;
+  int? age;
 
   Registered({this.date, this.age});
 
@@ -263,8 +263,8 @@ class Registered {
 }
 
 class Id {
-  String name;
-  String value;
+  String? name;
+  String? value;
 
   Id({this.name, this.value});
 
@@ -282,9 +282,9 @@ class Id {
 }
 
 class Picture {
-  String large;
-  String medium;
-  String thumbnail;
+  String? large;
+  String? medium;
+  String? thumbnail;
 
   Picture({this.large, this.medium, this.thumbnail});
 

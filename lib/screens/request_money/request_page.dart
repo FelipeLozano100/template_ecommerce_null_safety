@@ -13,8 +13,8 @@ class RequestPage extends StatefulWidget {
 }
 
 class _RequestPageState extends State<RequestPage> {
-  List<User> frequentUsers = [];
-  List<User> users = [];
+  List<User>? frequentUsers = [];
+  List<User>? users = [];
 
   getFrequentUsers() async {
     var temp = await ApiService.getUsers(nrUsers: 5);
@@ -86,19 +86,24 @@ class _RequestPageState extends State<RequestPage> {
                 // },
                 cursorColor: darkGrey,
                 decoration: InputDecoration(
-                    hintText: 'Search',
-                    contentPadding: EdgeInsets.zero,
-                    border: InputBorder.none,
-                    prefixIcon: SvgPicture.asset('assets/icons/search_icon.svg', fit: BoxFit.scaleDown,),
-                    suffix: FlatButton(
-                        onPressed: () {
-                          // searchController.clear();
-                          // searchResults.clear();
-                        },
-                        child: Text(
-                          'Clear',
-                          style: TextStyle(color: Colors.red),
-                        ))),
+                  hintText: 'Search',
+                  contentPadding: EdgeInsets.zero,
+                  border: InputBorder.none,
+                  prefixIcon: SvgPicture.asset(
+                    'assets/icons/search_icon.svg',
+                    fit: BoxFit.scaleDown,
+                  ),
+                  suffix: ElevatedButton(
+                    onPressed: () {
+                      // searchController.clear();
+                      // searchResults.clear();
+                    },
+                    child: Text(
+                      'Clear',
+                      style: TextStyle(color: Colors.red),
+                    ),
+                  ),
+                ),
               ),
             ),
             Padding(
@@ -107,7 +112,7 @@ class _RequestPageState extends State<RequestPage> {
             ),
             Expanded(
                 child: Center(
-              child: frequentUsers.length == 0
+              child: frequentUsers!.length == 0
                   ? CupertinoActivityIndicator()
                   : Container(
                       height: 150,
@@ -115,11 +120,12 @@ class _RequestPageState extends State<RequestPage> {
                           horizontal: 16.0, vertical: 8.0),
                       child: ListView(
                         scrollDirection: Axis.horizontal,
-                        children: frequentUsers
+                        children: frequentUsers!
                             .map((user) => InkWell(
                                   onTap: () => Navigator.of(context).push(
                                       MaterialPageRoute(
-                                          builder: (_) => RequestAmountPage(user))),
+                                          builder: (_) =>
+                                              RequestAmountPage(user))),
                                   child: Container(
                                       width: 100,
                                       height: 200,
@@ -137,15 +143,15 @@ class _RequestPageState extends State<RequestPage> {
                                           CircleAvatar(
                                             maxRadius: 24,
                                             backgroundImage: NetworkImage(
-                                                user.picture.thumbnail),
+                                                user.picture!.thumbnail!),
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.fromLTRB(
                                                 4.0, 16.0, 4.0, 0.0),
                                             child: Text(
-                                                user.name.first +
+                                                user.name!.first! +
                                                     ' ' +
-                                                    user.name.last,
+                                                    user.name!.last!,
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
                                                   fontSize: 14.0,
@@ -155,7 +161,7 @@ class _RequestPageState extends State<RequestPage> {
                                             padding:
                                                 const EdgeInsets.only(top: 8.0),
                                             child: Text(
-                                              user.phone,
+                                              user.phone!,
                                               textAlign: TextAlign.center,
                                               style: TextStyle(fontSize: 10),
                                             ),
@@ -174,14 +180,14 @@ class _RequestPageState extends State<RequestPage> {
             Expanded(
                 flex: 2,
                 child: Center(
-                  child: users.length == 0
+                  child: users!.length == 0
                       ? CupertinoActivityIndicator()
                       : Container(
                           color: Colors.white,
                           padding: const EdgeInsets.symmetric(
                               horizontal: 16.0, vertical: 8.0),
                           child: ListView(
-                            children: users
+                            children: users!
                                 .map((user) => InkWell(
                                       onTap: () => Navigator.of(context).push(
                                           MaterialPageRoute(
@@ -197,7 +203,7 @@ class _RequestPageState extends State<RequestPage> {
                                                 child: CircleAvatar(
                                                   maxRadius: 24,
                                                   backgroundImage: NetworkImage(
-                                                      user.picture.thumbnail),
+                                                      user.picture!.thumbnail!),
                                                 ),
                                               ),
                                               Column(
@@ -209,9 +215,9 @@ class _RequestPageState extends State<RequestPage> {
                                                         const EdgeInsets.only(
                                                             top: 16.0),
                                                     child: Text(
-                                                        user.name.first +
+                                                        user.name!.first! +
                                                             ' ' +
-                                                            user.name.last,
+                                                            user.name!.last!,
                                                         style: TextStyle(
                                                             fontSize: 16.0,
                                                             fontWeight:
@@ -224,7 +230,7 @@ class _RequestPageState extends State<RequestPage> {
                                                             top: 8.0,
                                                             bottom: 16.0),
                                                     child: Text(
-                                                      user.phone,
+                                                      user.phone!,
                                                     ),
                                                   ),
                                                 ],

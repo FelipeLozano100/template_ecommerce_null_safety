@@ -9,8 +9,8 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen>
     with SingleTickerProviderStateMixin {
-  Animation<double> opacity;
-  AnimationController controller;
+  Animation<double>? opacity;
+  late AnimationController controller;
 
   @override
   void initState() {
@@ -50,7 +50,7 @@ class _SplashScreenState extends State<SplashScreen>
               children: <Widget>[
                 Expanded(
                   child: Opacity(
-                      opacity: opacity.value,
+                      opacity: opacity!.value,
                       child: new Image.asset('assets/logo.png')),
                 ),
                 Padding(

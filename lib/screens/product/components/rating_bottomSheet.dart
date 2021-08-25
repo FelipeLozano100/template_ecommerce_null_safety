@@ -76,7 +76,7 @@ class _RatingBottomSheetState extends State<RatingBottomSheet> {
                           color: Color(0xffFF8993),
                           size: 20,
                         ),
-                        half: null,
+                        half: Container(),
                       ),
                       onRatingUpdate: (value) {
                         setState(() {
@@ -160,7 +160,7 @@ class _RatingBottomSheetState extends State<RatingBottomSheet> {
                                         color: Color(0xffFF8993),
                                         size: 20,
                                       ),
-                                      half: null,
+                                      half: Container(),
                                     ),
                                     onRatingUpdate: (value) {
                                       setState(() {

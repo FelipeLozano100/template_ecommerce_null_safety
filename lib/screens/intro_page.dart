@@ -167,8 +167,7 @@ class _IntroPageState extends State<IntroPage> {
                       children: <Widget>[
                         Opacity(
                           opacity: pageIndex != 2 ? 1.0 : 0.0,
-                          child: FlatButton(
-                            splashColor: Colors.transparent,
+                          child: ElevatedButton(
                             child: Text(
                               'SKIP',
                               style: TextStyle(
@@ -181,11 +180,12 @@ class _IntroPageState extends State<IntroPage> {
                                   MaterialPageRoute(
                                       builder: (context) => MainPage()));
                             },
+                            style: TextButton.styleFrom(
+                                shadowColor: Colors.transparent),
                           ),
                         ),
                         pageIndex != 2
-                            ? FlatButton(
-                                splashColor: Colors.transparent,
+                            ? ElevatedButton(
                                 child: Text(
                                   'NEXT',
                                   style: TextStyle(
@@ -199,9 +199,10 @@ class _IntroPageState extends State<IntroPage> {
                                         duration: Duration(milliseconds: 200),
                                         curve: Curves.linear);
                                 },
+                                style: TextButton.styleFrom(
+                                    shadowColor: Colors.transparent),
                               )
-                            : FlatButton(
-                                splashColor: Colors.transparent,
+                            : ElevatedButton(
                                 child: Text(
                                   'FINISH',
                                   style: TextStyle(
@@ -214,6 +215,8 @@ class _IntroPageState extends State<IntroPage> {
                                       MaterialPageRoute(
                                           builder: (context) => MainPage()));
                                 },
+                                style: TextButton.styleFrom(
+                                    shadowColor: Colors.transparent),
                               )
                       ],
                     ),

@@ -6,10 +6,9 @@ import 'package:ecommerce_int2/screens/notifications_page.dart';
 import 'package:ecommerce_int2/screens/profile_page.dart';
 import 'package:ecommerce_int2/screens/search_page.dart';
 import 'package:ecommerce_int2/screens/shop/check_out_page.dart';
-import 'package:ecommerce_int2/screens/tracking_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 
 import 'components/custom_bottom_bar.dart';
 import 'components/product_list.dart';
@@ -43,9 +42,9 @@ List<Product> products = [
 
 class _MainPageState extends State<MainPage>
     with TickerProviderStateMixin<MainPage> {
-  SwiperController swiperController;
-  TabController tabController;
-  TabController bottomTabController;
+  SwiperController? swiperController;
+  TabController? tabController;
+  TabController? bottomTabController;
 
   @override
   void initState() {
@@ -61,7 +60,8 @@ class _MainPageState extends State<MainPage>
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          IconButton( onPressed: () => Navigator.of(context)
+          IconButton(
+              onPressed: () => Navigator.of(context)
                   .push(MaterialPageRoute(builder: (_) => NotificationsPage())),
               icon: Icon(Icons.notifications)),
           IconButton(
@@ -223,7 +223,7 @@ class _MainPageState extends State<MainPage>
                   ];
                 },
                 body: TabView(
-                  tabController: tabController,
+                  tabController: tabController!,
                 ),
               ),
             ),

@@ -10,12 +10,12 @@ import 'components/more_products.dart';
 import 'components/product_options.dart';
 
 class ViewProductPage extends StatefulWidget {
-  final Product product;
+  final Product? product;
 
-  ViewProductPage({Key key, this.product}) : super(key: key);
+  ViewProductPage({Key? key, this.product}) : super(key: key);
 
   @override
-  _ViewProductPageState createState() => _ViewProductPageState(product);
+  _ViewProductPageState createState() => _ViewProductPageState(product!);
 }
 
 class _ViewProductPageState extends State<ViewProductPage> {
@@ -25,7 +25,7 @@ class _ViewProductPageState extends State<ViewProductPage> {
 
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
-  int active;
+  int? active;
 
   ///list of product colors
   List<Widget> colors() {
@@ -80,7 +80,10 @@ class _ViewProductPageState extends State<ViewProductPage> {
           iconTheme: IconThemeData(color: darkGrey),
           actions: <Widget>[
             IconButton(
-              icon: new SvgPicture.asset('assets/icons/search_icon.svg', fit: BoxFit.scaleDown,),
+              icon: new SvgPicture.asset(
+                'assets/icons/search_icon.svg',
+                fit: BoxFit.scaleDown,
+              ),
               onPressed: () => Navigator.of(context)
                   .push(MaterialPageRoute(builder: (_) => SearchPage())),
             )
@@ -119,12 +122,12 @@ class _ViewProductPageState extends State<ViewProductPage> {
                     RawMaterialButton(
                       onPressed: () {
                         showModalBottomSheet(
-                            context: context,
-                            builder: (context) {
-                              return RatingBottomSheet();
-                            },
-                            //elevation: 0,
-                            //backgroundColor: Colors.transparent
+                          context: context,
+                          builder: (context) {
+                            return RatingBottomSheet();
+                          },
+                          //elevation: 0,
+                          //backgroundColor: Colors.transparent
                         );
                       },
                       constraints:

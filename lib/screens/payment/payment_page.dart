@@ -20,10 +20,10 @@ class _PaymentPageState extends State<PaymentPage> {
   ScrollController scrollController = ScrollController();
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
-    scrollController.addListener((){
-      if(scrollController.position.userScrollDirection.index==1){
+    scrollController.addListener(() {
+      if (scrollController.position.userScrollDirection.index == 1) {
         FocusScope.of(context).requestFocus(FocusNode());
       }
     });
@@ -178,7 +178,7 @@ class _PaymentPageState extends State<PaymentPage> {
                             .map((c) => InkWell(
                                   onTap: () {
                                     setState(() {
-                                      active = c;
+                                      active = c!;
                                     });
                                   },
                                   child: Transform.scale(

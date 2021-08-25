@@ -1,28 +1,28 @@
 import 'package:flutter/material.dart';
 
 class CategoryCard extends StatelessWidget {
-  final Color begin;
-  final Color end;
-  final String categoryName;
-  final String assetPath;
+  final Color? begin;
+  final Color? end;
+  final String? categoryName;
+  final String? assetPath;
 
   CategoryCard(
-      {Key key,
-        this.controller,
-        this.begin,
-        this.end,
-        this.categoryName,
-        this.assetPath})
+      {Key? key,
+      this.controller,
+      this.begin,
+      this.end,
+      this.categoryName,
+      this.assetPath})
       :
 
-  // Each animation defined here transforms its value during the subset
-  // of the controller's duration defined by the animation's interval.
-  // For example the opacity animation transforms its value during
-  // the first 10% of the controller's duration.
+        // Each animation defined here transforms its value during the subset
+        // of the controller's duration defined by the animation's interval.
+        // For example the opacity animation transforms its value during
+        // the first 10% of the controller's duration.
 
         height = Tween<double>(begin: 150, end: 250.0).animate(
           CurvedAnimation(
-            parent: controller,
+            parent: controller!,
             curve: Interval(
               0.0,
               0.300,
@@ -42,20 +42,20 @@ class CategoryCard extends StatelessWidget {
         ),
         super(key: key);
 
-  final Animation<double> controller;
+  final Animation<double>? controller;
   final Animation<double> height;
   final Animation<double> itemHeight;
 
   // This function is called each time the controller "ticks" a new frame.
   // When it runs, all of the animation's values will have been
   // updated to reflect the controller's current value.
-  Widget _buildAnimation(BuildContext context, Widget child) {
+  Widget _buildAnimation(BuildContext context, Widget? child) {
     return Container(
       height: height.value,
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
           gradient: LinearGradient(
-              colors: [begin, end],
+              colors: [begin!, end!],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight),
           borderRadius: BorderRadius.all(Radius.circular(10))),
@@ -66,7 +66,7 @@ class CategoryCard extends StatelessWidget {
           Align(
               alignment: Alignment(-1, 0),
               child: Text(
-                categoryName,
+                categoryName!,
                 style: TextStyle(
                     fontSize: 22,
                     color: Colors.white,
@@ -81,7 +81,7 @@ class CategoryCard extends StatelessWidget {
                 padding: EdgeInsets.only(bottom: 16.0),
                 height: itemHeight.value,
                 child: Image.asset(
-                  assetPath,
+                  assetPath!,
                 ),
               ),
               Container(
@@ -89,7 +89,7 @@ class CategoryCard extends StatelessWidget {
                     color: Colors.white,
                     borderRadius: BorderRadius.all(Radius.circular(24))),
                 padding:
-                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                    const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
                 child: Text(
                   'View more',
                   style: TextStyle(color: end, fontWeight: FontWeight.bold),
@@ -106,19 +106,19 @@ class CategoryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedBuilder(
       builder: _buildAnimation,
-      animation: controller,
+      animation: controller!,
     );
   }
 }
 
 class StaggeredCardCard extends StatefulWidget {
-  final Color begin;
-  final Color end;
-  final String categoryName;
-  final String assetPath;
+  final Color? begin;
+  final Color? end;
+  final String? categoryName;
+  final String? assetPath;
 
   const StaggeredCardCard(
-      {Key key, this.begin, this.end, this.categoryName, this.assetPath})
+      {Key? key, this.begin, this.end, this.categoryName, this.assetPath})
       : super(key: key);
 
   @override
@@ -127,7 +127,7 @@ class StaggeredCardCard extends StatefulWidget {
 
 class _StaggeredCardCardState extends State<StaggeredCardCard>
     with TickerProviderStateMixin {
-  AnimationController _controller;
+  AnimationController? _controller;
   bool isActive = false;
 
   @override
@@ -140,7 +140,7 @@ class _StaggeredCardCardState extends State<StaggeredCardCard>
 
   Future<void> _playAnimation() async {
     try {
-      await _controller.forward().orCancel;
+      await _controller!.forward().orCancel;
     } on TickerCanceled {
       // the animation got canceled, probably because we were disposed
     }
@@ -148,15 +148,14 @@ class _StaggeredCardCardState extends State<StaggeredCardCard>
 
   Future<void> _reverseAnimation() async {
     try {
-      await _controller.reverse().orCancel;
+      await _controller!.reverse().orCancel;
     } on TickerCanceled {
       // the animation got canceled, probably because we were disposed
     }
   }
 
   @override
-  Widget build(BuildContext context) {
-    var timeDilation = 10.0; // 1.0 is normal animation speed.
+  Widget build(BuildContext context) { // 1.0 is normal animation speed.
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () {
@@ -169,7 +168,7 @@ class _StaggeredCardCardState extends State<StaggeredCardCard>
         }
       },
       child: CategoryCard(
-        controller: _controller.view,
+        controller: _controller!.view,
         categoryName: widget.categoryName,
         begin: widget.begin,
         end: widget.end,

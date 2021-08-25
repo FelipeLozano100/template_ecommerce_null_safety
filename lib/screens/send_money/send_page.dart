@@ -65,19 +65,24 @@ class _SendPageState extends State<SendPage> {
               child: TextField(
                 cursorColor: darkGrey,
                 decoration: InputDecoration(
-                    hintText: 'Search',
-                    contentPadding: EdgeInsets.zero,
-                    border: InputBorder.none,
-                    prefixIcon: SvgPicture.asset('assets/icons/search_icon.svg', fit: BoxFit.scaleDown,),
-                    suffix: FlatButton(
-                        onPressed: () {
-                          // searchController.clear();
-                          // searchResults.clear();
-                        },
-                        child: Text(
-                          'Clear',
-                          style: TextStyle(color: Colors.red),
-                        ))),
+                  hintText: 'Search',
+                  contentPadding: EdgeInsets.zero,
+                  border: InputBorder.none,
+                  prefixIcon: SvgPicture.asset(
+                    'assets/icons/search_icon.svg',
+                    fit: BoxFit.scaleDown,
+                  ),
+                  suffix: ElevatedButton(
+                    onPressed: () {
+                      // searchController.clear();
+                      // searchResults.clear();
+                    },
+                    child: Text(
+                      'Clear',
+                      style: TextStyle(color: Colors.red),
+                    ),
+                  ),
+                ),
               ),
             ),
             Padding(
@@ -86,11 +91,11 @@ class _SendPageState extends State<SendPage> {
             ),
             Expanded(
                 child: Center(
-                  child: Container(
-              height: 150,
-              padding:
+              child: Container(
+                height: 150,
+                padding:
                     const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-              child: Center(
+                child: Center(
                   child: frequentUsers.length == 0
                       ? CupertinoActivityIndicator()
                       : ListView(
@@ -118,25 +123,26 @@ class _SendPageState extends State<SendPage> {
                                             CircleAvatar(
                                               maxRadius: 24,
                                               backgroundImage: NetworkImage(
-                                                  user.picture.thumbnail),
+                                                  user.picture!.thumbnail!),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsets.fromLTRB(
-                                                  4.0, 16.0, 4.0, 0.0),
+                                              padding:
+                                                  const EdgeInsets.fromLTRB(
+                                                      4.0, 16.0, 4.0, 0.0),
                                               child: Text(
-                                                  user.name.first +
+                                                  user.name!.first! +
                                                       ' ' +
-                                                      user.name.last,
+                                                      user.name!.last!,
                                                   textAlign: TextAlign.center,
                                                   style: TextStyle(
                                                     fontSize: 14.0,
                                                   )),
                                             ),
                                             Padding(
-                                              padding:
-                                                  const EdgeInsets.only(top: 8.0),
+                                              padding: const EdgeInsets.only(
+                                                  top: 8.0),
                                               child: Text(
-                                                user.phone,
+                                                user.phone!,
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(fontSize: 10),
                                               ),
@@ -146,9 +152,9 @@ class _SendPageState extends State<SendPage> {
                                   ))
                               .toList(),
                         ),
+                ),
               ),
-            ),
-                )),
+            )),
             Padding(
               padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0.0),
               child: Text('Your Contacts'),
@@ -159,10 +165,10 @@ class _SendPageState extends State<SendPage> {
                   child: users.length == 0
                       ? CupertinoActivityIndicator()
                       : Container(
-                        color: Colors.white,
-                        padding: const EdgeInsets.symmetric(
+                          color: Colors.white,
+                          padding: const EdgeInsets.symmetric(
                               horizontal: 16.0, vertical: 8.0),
-                        child: ListView(
+                          child: ListView(
                             children: users
                                 .map((user) => InkWell(
                                       onTap: () => Navigator.of(context).push(
@@ -179,7 +185,7 @@ class _SendPageState extends State<SendPage> {
                                                 child: CircleAvatar(
                                                   maxRadius: 24,
                                                   backgroundImage: NetworkImage(
-                                                      user.picture.thumbnail),
+                                                      user.picture!.thumbnail!),
                                                 ),
                                               ),
                                               Column(
@@ -191,9 +197,9 @@ class _SendPageState extends State<SendPage> {
                                                         const EdgeInsets.only(
                                                             top: 16.0),
                                                     child: Text(
-                                                        user.name.first +
+                                                        user.name!.first! +
                                                             ' ' +
-                                                            user.name.last,
+                                                            user.name!.last!,
                                                         style: TextStyle(
                                                             fontSize: 16.0,
                                                             fontWeight:
@@ -206,7 +212,7 @@ class _SendPageState extends State<SendPage> {
                                                             top: 8.0,
                                                             bottom: 16.0),
                                                     child: Text(
-                                                      user.phone,
+                                                      user.phone!,
                                                     ),
                                                   ),
                                                 ],
@@ -229,7 +235,7 @@ class _SendPageState extends State<SendPage> {
                                     ))
                                 .toList(),
                           ),
-                      ),
+                        ),
                 )),
           ],
         ),

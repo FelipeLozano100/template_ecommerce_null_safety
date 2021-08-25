@@ -2,33 +2,29 @@ import 'package:ecommerce_int2/app_properties.dart';
 import 'package:ecommerce_int2/models/product.dart';
 import 'package:ecommerce_int2/screens/product/product_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_page_indicator/flutter_page_indicator.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 
+//ignore: must_be_immutable
 class ProductList extends StatelessWidget {
-  List<Product> products;
+  List<Product>? products;
 
   final SwiperController swiperController = SwiperController();
 
-  ProductList({Key key, this.products}) : super(key: key);
+  ProductList({Key? key, this.products}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    double cardHeight = MediaQuery.of(context).size.height/2.7;
-    double cardWidth = MediaQuery.of(context).size.width/1.8;
-    if(products==null)
-      products = [];
+    double cardHeight = MediaQuery.of(context).size.height / 2.7;
+    double cardWidth = MediaQuery.of(context).size.width / 1.8;
+    if (products == null) this.products = [];
 
     return SizedBox(
       height: cardHeight,
       child: Swiper(
-        itemCount: products.length,
+        itemCount: products!.length,
         itemBuilder: (_, index) {
           return ProductCard(
-            height: cardHeight,
-            width: cardWidth,
-            product: products[index]
-          );
+              height: cardHeight, width: cardWidth, product: products![index]);
         },
         scale: 0.8,
         controller: swiperController,
@@ -42,7 +38,7 @@ class ProductList extends StatelessWidget {
                   "The itemCount is too big, we suggest use FractionPaginationBuilder instead of DotSwiperPaginationBuilder in this sitituation");
             }
             Color activeColor = mediumYellow;
-            Color color = Colors.grey[300];
+            Color color = Colors.grey[300]!;
             double size = 10.0;
             double space = 5.0;
 
@@ -100,24 +96,18 @@ class ProductList extends StatelessWidget {
 }
 
 class ProductCard extends StatelessWidget {
-  final Product product;
-  final double height;
-  final double width;
+  final Product? product;
+  final double? height;
+  final double? width;
 
-
-
-  const ProductCard({Key key, this.product,this.height,this.width})
+  const ProductCard({Key? key, this.product, this.height, this.width})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
     return InkWell(
-      onTap: () => Navigator.of(context)
-          .push(MaterialPageRoute(builder: (_) => ProductPage(
-        product: product
-
-      ))),
+      onTap: () => Navigator.of(context).push(
+          MaterialPageRoute(builder: (_) => ProductPage(product: product!))),
       child: Stack(
         children: <Widget>[
           Container(
@@ -144,7 +134,7 @@ class ProductCard extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            product.name ?? '',
+                            product!.name,
                             style:
                                 TextStyle(color: Colors.white, fontSize: 16.0),
                           ),
@@ -161,7 +151,7 @@ class ProductCard extends StatelessWidget {
                           color: Color.fromRGBO(224, 69, 10, 1),
                         ),
                         child: Text(
-                          '\$${product.price ?? 0.0}',
+                          '\$${product!.price}',
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 18,
@@ -176,11 +166,11 @@ class ProductCard extends StatelessWidget {
           ),
           Positioned(
             child: Hero(
-              tag: product.image,
+              tag: product!.image,
               child: Image.asset(
-                product.image ?? '',
-                height: height/1.7,
-                width: width/1.4,
+                product!.image,
+                height: height! / 1.7,
+                width: width! / 1.4,
                 fit: BoxFit.contain,
               ),
             ),

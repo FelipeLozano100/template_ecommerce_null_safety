@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class CustomBottomBar extends StatelessWidget {
-  final TabController controller;
+  final TabController? controller;
 
-  const CustomBottomBar({Key key, this.controller}) : super(key: key);
+  const CustomBottomBar({Key ? key, this.controller}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
@@ -17,25 +17,25 @@ class CustomBottomBar extends StatelessWidget {
                     fit: BoxFit.fitWidth,
                     ),
             onPressed: () {
-              controller.animateTo(0);
+              controller!.animateTo(0);
             },
           ),
           IconButton(
             icon: Image.asset('assets/icons/category_icon.png'),
             onPressed: () {
-              controller.animateTo(1);
+              controller!.animateTo(1);
             },
           ),
           IconButton(
             icon: SvgPicture.asset('assets/icons/cart_icon.svg'),
             onPressed: () {
-              controller.animateTo(2);
+              controller!.animateTo(2);
             },
           ),
           IconButton(
             icon: Image.asset('assets/icons/profile_icon.png'),
             onPressed: () {
-              controller.animateTo(3);
+              controller!.animateTo(3);
             },
           )
         ],

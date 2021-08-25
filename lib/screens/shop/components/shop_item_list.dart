@@ -7,9 +7,9 @@ import 'package:numberpicker/numberpicker.dart';
 
 class ShopItemList extends StatefulWidget {
   final Product product;
-  final Function onRemove;
+  final Function? onRemove;
 
-  ShopItemList(this.product, {Key key, this.onRemove}) : super(key: key);
+  ShopItemList(this.product, {Key? key, this.onRemove}) : super(key: key);
 
   @override
   _ShopItemListState createState() => _ShopItemListState();
@@ -80,24 +80,23 @@ class _ShopItemListState extends State<ShopItemList> {
                           ],
                         ),
                       ),
-//TODO: Work on scroll quantity
                       Theme(
                         data: ThemeData(
                             accentColor: Colors.black,
                             textTheme: TextTheme(
-                              headline: TextStyle(
+                              headline1: TextStyle(
                                   fontFamily: 'Montserrat',
                                   fontSize: 14,
                                   color: Colors.black,
                                   fontWeight: FontWeight.bold),
-                              body1: TextStyle(
+                              bodyText1: TextStyle(
                                 fontFamily: 'Montserrat',
                                 fontSize: 12,
                                 color: Colors.grey[400],
                               ),
                             )),
-                        child: NumberPicker.integer(
-                          initialValue: quantity,
+                        child: NumberPicker(
+                          value: quantity,
                           minValue: 1,
                           maxValue: 10,
                           onChanged: (value) {
@@ -105,8 +104,8 @@ class _ShopItemListState extends State<ShopItemList> {
                               quantity = value;
                             });
                           },
-                          itemExtent: 30,
-                          listViewWidth: 40,
+                          itemCount: 30,
+                          itemWidth: 40,
                         ),
                       )
                     ])),
@@ -115,7 +114,9 @@ class _ShopItemListState extends State<ShopItemList> {
               top: 5,
               child: ShopProductDisplay(
                 widget.product,
-                onPressed: widget.onRemove,
+                onPressed: () {
+                  widget.onRemove!;
+                },
               )),
         ],
       ),

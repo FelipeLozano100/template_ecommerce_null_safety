@@ -7,8 +7,9 @@ import 'shop_bottomSheet.dart';
 
 class ProductOption extends StatelessWidget {
   final GlobalKey<ScaffoldState> scaffoldKey;
-  final Product product;
-  const ProductOption(this.scaffoldKey, {Key key, this.product}) : super(key: key);
+  final Product? product;
+  const ProductOption(this.scaffoldKey, {Key? key, this.product})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class ProductOption extends StatelessWidget {
           Positioned(
             left: 16.0,
             child: Image.asset(
-              product.image,
+              product!.image,
               height: 200,
               width: 200,
             ),
@@ -35,7 +36,7 @@ class ProductOption extends StatelessWidget {
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                    child: Text(product.name,
+                    child: Text(product!.name,
                         textAlign: TextAlign.right,
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
@@ -44,8 +45,8 @@ class ProductOption extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: () async {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (_)=>CheckOutPage()));
-
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (_) => CheckOutPage()));
                     },
                     child: Container(
                       width: MediaQuery.of(context).size.width / 2.5,
@@ -69,7 +70,7 @@ class ProductOption extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: () {
-                      scaffoldKey.currentState.showBottomSheet((context) {
+                      scaffoldKey.currentState!.showBottomSheet((context) {
                         return ShopBottomSheet();
                       });
                     },
